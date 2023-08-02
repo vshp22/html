@@ -20,7 +20,7 @@ pipeline {
             steps {
                 script {
 		    
-                    sh "for server in ${REMOTE_SERVER_IP};do scp index.html ${REMOTE_SERVER_USER}@${server}:${REMOTE_SERVER_PATH}/index.html"
+                     sh "scp index.html ${REMOTE_SERVER_USER}@${REMOTE_SERVER_IP}:${REMOTE_SERVER_PATH}/index.html"
                 }
             }
         }
