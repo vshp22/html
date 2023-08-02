@@ -1,0 +1,28 @@
+pipeline {
+    agent any
+   
+    environment {
+        GIT_REPO_URL = 'https://github.com/vshp22/html.git'
+        SSH_KEY_CREDENTIALS = credentials('f76a7e34-f944-4c02-b61b-fbe58357fa09')
+        REMOTE_SERVER_USER = 'cloud_user'
+        REMOTE_SERVER_IP = '2874335c782c.mylabserver.com 2874335c783c.mylabserver.com 2874335c784c.mylabserver.com'
+        REMOTE_SERVER_PATH = '/var/www/html/'
+    }
+   
+    stages {
+        stage('Clone Repository') {
+            steps {
+                checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: "${GIT_REPO_URL}"]]])
+            }
+        }
+       
+        stage('Deploy index.html') {
+            steps {
+                script {
+		    
+                    sh "for server in ${REMOTE_SERVER_IP};do scp index.html ${REMOTE_SERVER_USER}@${server}:${REMOTE_SERVER_PATH}/index.html"
+                }
+            }
+        }
+    }
+}
