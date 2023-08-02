@@ -5,7 +5,7 @@ pipeline {
         GIT_REPO_URL = 'https://github.com/vshp22/html.git'
         SSH_KEY_CREDENTIALS = credentials('f76a7e34-f944-4c02-b61b-fbe58357fa09')
         REMOTE_SERVER_USER = 'cloud_user'
-        REMOTE_SERVER_IP = '2874335c782c.mylabserver.com 2874335c783c.mylabserver.com 2874335c784c.mylabserver.com'
+        REMOTE_SERVER_IP = '2874335c783c.mylabserver.com 2874335c784c.mylabserver.com'
         REMOTE_SERVER_PATH = '/var/www/html/'
     }
    
